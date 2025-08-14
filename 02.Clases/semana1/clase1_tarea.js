@@ -1,3 +1,4 @@
+const res = require('express/lib/response.js');
 const { ask } = require('../helpers/input.js');
 
 async function main() {
@@ -5,7 +6,33 @@ async function main() {
   // 1.- Pedir el primer número
   // 2.- Pedir el segundo número
   // 3.- Pedir operador
+  let operador = await ask("¿Vamos a hacer una operacion matematica de dos numeros, que operacion quieres hacer suma +, resta -, multiplicacion * o division /?");
+  let primerNumero = Number(await ask("¿Cuál es primer numero?"));
+  let segundoNumero = Number(await ask("¿Cuál es el segundo numero?"));
+  let resultado;
+  // let resultado = (primerNumero) + operador + (segundoNumero);
 
+  
+  switch (operador) {
+  case '+':
+    resultado = primerNumero + segundoNumero;
+    break;
+  case '-':
+    resultado = primerNumero - segundoNumero;
+    break;
+  case '*':
+    resultado = primerNumero * segundoNumero;
+    break;
+  case '/':
+    resultado = primerNumero / segundoNumero;
+    break;
+  default:
+    resultado = 'Operador inválido';
+}
+
+
+  console.log("El resultado de la operacion es: " + resultado);
+   // resultado = primerNumero + operador + segundoNumero;
 }
 
 main();
